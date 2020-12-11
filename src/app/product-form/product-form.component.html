@@ -1,0 +1,49 @@
+<div class="modal-header">
+  <h4 class="modal-title">Hi there!</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="alert alert-danger" role="alert" *ngIf="!form.valid">
+      <div *ngIf="form.controls['name']?.errors?.required">Name is required</div>
+      <div *ngIf="form.controls['price']?.errors?.priceNotConform">Price is not conform</div>
+      <div *ngIf="form.controls['price']?.errors?.required">Price is required</div>
+      <div *ngIf="form.controls['category']?.errors?.notValidCategoryLength">Category need 3 char at least</div>
+      <div *ngIf="form.controls['promo']?.errors?.required">Promo is required</div>
+      <div *ngIf="form.controls['promo']?.errors?.max">Promo cannot be more than 99%</div>
+      <div *ngIf="form.controls['promo']?.errors?.priceToLow">Price with promo is too low</div>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <div class="form-group">
+      <label for="name-input">Product Name</label>
+      <input type="text" class="form-control" id="name-input" formControlName="name" aria-describedby="nameHelp">
+      <small id="emailHelp" class="form-text text-muted">Make it great</small>
+    </div>
+    <div class="form-group">
+      <label for="category-input">Category</label>
+      <input type="text" class="form-control" id="category-input" formControlName="category">
+    </div>
+    <div class="form-group">
+      <label for="description-input">Description</label>
+      <textarea class="form-control" id="description-input" rows="3" formControlName="description"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="price-input">Price</label>
+      <input type="number" class="form-control" id="price-input" formControlName="price">
+    </div>
+    <div class="form-group">
+      <label for="price-input">Promo</label>
+      <input type="number" class="form-control" id="promo-input" formControlName="promo">
+      <small id="promoHelp" class="form-text text-muted">ex: 0.2 for 20%</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+
+
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>
